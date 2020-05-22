@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Joke from './Joke';
 import './App.css';
 
+
 function App() {
+  const [jokes, setJoke] = useState(' ');
+
+  useEffect(() => {
+    getJoke();
+  }, []);
+
+  const getJoke = async () => {
+    const response = await fetch(`https://official-joke-api.appspot.com/random_joke`);
+    const data = await response.json();
+    setJoke(data);
+
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className="mainJoke">
+        <h1>JOKES UNLIMITED</h1>
+        <Joke
+          setup={jokes.setup}
+          punchline={jokes.punchline}
+        />
+        <button className="new-joke" onClick={getJoke}>Get Another Joke</button>
+      </div>
+  )
 }
 
 export default App;
