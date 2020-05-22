@@ -7,4 +7,4 @@ This project is built with [ReactJS](https://github.com/facebook/create-react-ap
 
 ## Some example of the jokes you will get in return
 
-![](screenshot/ss.png)
+![](src/screenshot/ss.png)
